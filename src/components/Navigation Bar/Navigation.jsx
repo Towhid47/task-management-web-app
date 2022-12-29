@@ -20,6 +20,7 @@ const Navigation = () => {
           </Container>
         </Navbar>
       </div>
+      <hr />
     </div>
   );
 };
