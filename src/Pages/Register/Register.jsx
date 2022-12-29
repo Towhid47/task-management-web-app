@@ -5,6 +5,19 @@ import Google from '../../assets/logo/google.png';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+
+  const handleSignUp = (event) =>{
+     event.preventDefault();
+
+     const Name = event.target.name.value;
+     const Email = event.target.email.value;
+     const Password = event.target.password.value;
+     const ProfilePictureLink = event.target.profilePictureLink.value;
+
+     console.log(Name, Email, Password, ProfilePictureLink);
+  }
+
+
     return (
         <div>
                 <div className="text-center">
@@ -19,25 +32,25 @@ const Register = () => {
                 
                 {/* ///////////////Registration Form ////////////////////////*/}
                  <div className="mt-5">
-                      <Form>
+                      <Form onSubmit={handleSignUp}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="fs-3">Enter Your Name</Form.Label>
-                          <Form.Control type="text" placeholder="Full Name" required/>
+                          <Form.Control type="text" name="name" placeholder="Full Name" required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="fs-3">Email address</Form.Label>
-                          <Form.Control type="email" placeholder="Enter email" required/>
+                          <Form.Control type="email" name="email" placeholder="Enter email" required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="fs-3">Profile Picture URL (optional)</Form.Label>
-                          <Form.Control type="text" placeholder="image URL Link"/>
+                          <Form.Control type="text" name="profilePictureLink" placeholder="image URL Link"/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label className="fs-3">Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" required/>
+                          <Form.Control type="password" name="password" placeholder="Password" required/>
                         </Form.Group>
                     
                        <div className="text-center mt-5">

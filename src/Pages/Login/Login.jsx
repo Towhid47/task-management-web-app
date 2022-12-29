@@ -6,6 +6,20 @@ import './Login.css';
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
+    /////// Log in via Email & Password 
+
+   const handleLogIn = (e) =>{
+      e.preventDefault();
+
+      const Email = e.target.email.value;
+      const Password = e.target.password.value;
+
+      console.log(Email,Password);
+   }
+
+
+
   return (
     <div>
             <div className="text-center">
@@ -20,15 +34,15 @@ const Login = () => {
                 
                 {/* ///////////////Login Form ////////////////////////*/}
                  <div className="mt-5">
-                      <Form>
+                      <Form onSubmit={handleLogIn}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label className="fs-3">Email address</Form.Label>
-                          <Form.Control type="email" placeholder="Enter email" required/>
+                          <Form.Control type="email" name="email" placeholder="Enter email" required/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label className="fs-3">Password</Form.Label>
-                          <Form.Control type="password" placeholder="Password" required/>
+                          <Form.Control type="password" name="password" placeholder="Password" required/>
                         </Form.Group>
                     
                        <div className="text-center mt-5">
