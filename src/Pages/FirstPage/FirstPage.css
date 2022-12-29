@@ -1,0 +1,18 @@
+/* Google fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+.logo-text{
+    font-family: 'Lobster', cursive;
+}
+.daily{
+    color: aqua;
+}
+
+.greetings{
+    font-size: 400%;
+}
+.heading-text{
+    font-family: 'Raleway', sans-serif;
+}
+
