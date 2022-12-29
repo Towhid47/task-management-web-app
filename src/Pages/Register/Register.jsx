@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
 
+  ///// Register via Email and Password 
+
   const handleSignUp = (event) =>{
      event.preventDefault();
 
