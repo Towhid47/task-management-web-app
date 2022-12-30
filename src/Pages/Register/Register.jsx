@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import logo from '../../assets/logo/task (1).png';
 import Google from '../../assets/logo/google.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthContext/AuthProvider';
+import Swal from 'sweetalert2';
+
 
 const Register = () => {
+
+  const {Registration} = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   ///// Register via Email and Password 
 
@@ -16,7 +23,23 @@ const Register = () => {
      const Password = event.target.password.value;
      const ProfilePictureLink = event.target.profilePictureLink.value;
 
-     console.log(Name, Email, Password, ProfilePictureLink);
+
+    ///// Calling Register function which was declared in AuthProvider.js file.... 
+     Registration(Email,Password)
+     .then(result => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Registration Done',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          event.target.reset();
+          navigate('/login')
+     })
+     .catch(error => error.message);
+
+
   }
 
 

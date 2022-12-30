@@ -1,8 +1,8 @@
-import React, { createContext, useState } from 'react';
-import {getAuth} from 'firebase/auth';
+import React, { createContext, useEffect, useState } from 'react';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged} from 'firebase/auth';
 import app from '../../Firebase/Firebase.init.js';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 const auth = getAuth(app);
 
@@ -13,9 +13,29 @@ const AuthProvider = ({children}) => {
     
     const [loader, setLoader] = useState(true);
 
+
+    ///// Create User or Registration via Email & Password
+    const  Registration = (email,password)=>{
+        setLoader(true);
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+
+    ///// OnAuthState() Changed method defines whether a user is currently Logged in or Not....
+    useEffect(()=>{
+          const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
+                setUser(currentUser);
+                setLoader(false);
+          })
+          return()=>{
+              unSubscribe();
+          }
+    },[])
+
     const authData = {
          user,
-         loader
+         loader,
+         Registration
     }
 
     return (
