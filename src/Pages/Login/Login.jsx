@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import logo from '../../assets/logo/task (1).png';
 import Google from '../../assets/logo/google.png';
 import './Login.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
-    /////// Log in via Email & Password 
+    const {signIn} = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    ///////Handle Log in via Email & Password 
 
    const handleLogIn = (e) =>{
       e.preventDefault();
@@ -15,7 +21,19 @@ const Login = () => {
       const Email = e.target.email.value;
       const Password = e.target.password.value;
 
-      console.log(Email,Password);
+      //// call the signIn function for sending two parameters (Email,Password) into signIn() function that declared in AuthProvider.js .... signIn() function used to send email & password to the Firebase Authentication and perform Log in Operation
+      signIn(Email,Password)
+      .then(result=>{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Log In Successful',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/home');
+      })
+      .catch(error => error)
    }
 
 
