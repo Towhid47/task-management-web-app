@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../../Firebase/Firebase.init.js';
 
 export const AuthContext = createContext();
@@ -40,6 +40,13 @@ const AuthProvider = ({children}) => {
     }
 
 
+    //// Log Out /////
+    const logOut = () =>{
+        setLoader(true);
+        return signOut(auth);
+    }
+
+
 
     ///// OnAuthState() Changed method defines whether a user is currently Logged in or Not....
     useEffect(()=>{
@@ -58,7 +65,8 @@ const AuthProvider = ({children}) => {
          Registration,
          userProfile,
          signIn,
-         googleSignIn
+         googleSignIn,
+         logOut
     }
 
     return (
