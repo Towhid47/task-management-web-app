@@ -6,10 +6,11 @@ import './Login.css';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthProvider";
 import Swal from "sweetalert2";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn, googleSignIn} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -34,9 +35,28 @@ const Login = () => {
         e.target.reset();
         navigate('/home');
       })
-      .catch(error => error)
+      .catch(error => error);
    }
 
+
+  //  ///// Handle Google Sign In
+   const provider = new GoogleAuthProvider();
+
+   const handleGoogleSignIn = () =>{
+
+       googleSignIn(provider)
+       .then(result=>{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Google Sign in Successful',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/home');
+      })
+      .catch(error=>error.message);
+   }
 
 
   return (
@@ -71,7 +91,7 @@ const Login = () => {
                        </div>
 
                        <div className="text-center mt-3">
-                            <Button className="btn btn-light w-50">
+                            <Button className="btn btn-light w-50" onClick={handleGoogleSignIn}>
                                <img src={Google} alt="" /> &nbsp; <span className="fs-5 d-none d-lg-inline">Sign in with Google</span>
                             </Button>
                        </div>
