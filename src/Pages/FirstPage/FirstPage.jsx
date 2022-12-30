@@ -9,12 +9,6 @@ import NavLogo_UserProfile from '../../components/NavLogo_UserProfile/NavLogo_Us
 const FirstPage = () => {
     return (
         <div>
-
-             <div>
-                   <NavLogo_UserProfile></NavLogo_UserProfile>
-             </div>
-              <hr /><br />
-
               <div className='mt-5 container d-lg-flex'>
                     <div className='heading-text'>
                         <h1 className='greetings'>Welcome to <br /><span className='logo-text'>Task <span className='daily'>Daily24</span></span></h1>
