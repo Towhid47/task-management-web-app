@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const Register = () => {
 
-  const {Registration} = useContext(AuthContext);
+  const {Registration, userProfile, user} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -34,11 +34,23 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500
           })
+          handleUserProfile(Name, ProfilePictureLink);
           event.target.reset();
           navigate('/login')
      })
      .catch(error => error.message);
 
+
+    ////// Update User Profile (accessing User Name & PhotoURL)
+    const handleUserProfile = (Name, ProfilePictureLink) =>{
+         const profile = {
+             displayName : Name,
+             photoURL : ProfilePictureLink
+         }
+         userProfile(profile)
+         .then(()=>{})
+         .catch(error => error.message)
+    }
 
   }
 

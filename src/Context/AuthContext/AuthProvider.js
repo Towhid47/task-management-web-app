@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, updateProfile} from 'firebase/auth';
 import app from '../../Firebase/Firebase.init.js';
 
 export const AuthContext = createContext();
@@ -21,6 +21,12 @@ const AuthProvider = ({children}) => {
     }
 
 
+    ///// Set or Update User Profile including Name & PhotoURL ....
+    const userProfile = (profile) =>{
+        return updateProfile(auth.currentUser, profile);
+    }
+
+
     ///// OnAuthState() Changed method defines whether a user is currently Logged in or Not....
     useEffect(()=>{
           const unSubscribe = onAuthStateChanged(auth, (currentUser)=>{
@@ -35,7 +41,8 @@ const AuthProvider = ({children}) => {
     const authData = {
          user,
          loader,
-         Registration
+         Registration,
+         userProfile
     }
 
     return (
