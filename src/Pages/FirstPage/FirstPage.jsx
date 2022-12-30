@@ -4,13 +4,15 @@ import logo from '../../assets/logo/task (1).png';
 import ToDo from '../../assets/image/ToDo.jpg';
 import './FirstPage.css';
 import { Link } from 'react-router-dom';
+import NavLogo_UserProfile from '../../components/NavLogo_UserProfile/NavLogo_UserProfile';
 
 const FirstPage = () => {
     return (
         <div>
-              <div className='text-center'>
-                   <img src={logo} alt="" /> <span className='logo-text fs-1'>Task <span className='daily'>Daily24</span></span>
-              </div>
+
+             <div>
+                   <NavLogo_UserProfile></NavLogo_UserProfile>
+             </div>
               <hr /><br />
 
               <div className='mt-5 container d-lg-flex'>
